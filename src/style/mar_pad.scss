@@ -1,0 +1,42 @@
+// Массивы значений для margin-top, margin-bottom, padding-top, padding-bottom
+$mt-values: 17, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1;
+$mb-values: 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1;
+$pt-values: 26, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1;
+$pb-values: 27, 20, 18, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1;
+
+// Генерация классов margin-top
+@each $v in $mt-values {
+  .mt#{$v} {
+    margin-top: #{$v}rem;
+  }
+}
+
+// Генерация классов margin-bottom
+@each $v in $mb-values {
+  .mb#{$v} {
+    margin-bottom: #{$v}rem;
+  }
+}
+
+// Генерация классов padding-top
+@each $v in $pt-values {
+  .pt#{$v} {
+    padding-top: #{$v}rem;
+  }
+}
+
+// Генерация классов padding-bottom
+@each $v in $pb-values {
+  .pb#{$v} {
+    padding-bottom: #{$v}rem;
+  }
+}
+
+.m0 {
+  margin: 0;
+}
+
+// width 100%
+.w100 {
+  width: 100%;
+}

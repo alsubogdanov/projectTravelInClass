@@ -1,0 +1,58 @@
+.d-flex {
+  display: flex;
+}
+
+.f-column {
+  flex-direction: column;
+}
+.f-reverse {
+  flex-direction: row-reverse;
+}
+.f-creverse {
+  flex-direction: column-reverse;
+}
+
+.jcsb {
+  justify-content: space-between;
+}
+.jcc {
+  justify-content: center;
+}
+.jce {
+  justify-content: end;
+}
+.jcsa {
+  justify-content: space-around;
+}
+
+.aic {
+  align-items: center;
+}
+.aie {
+  align-items: flex-end;
+}
+.ais {
+  align-items: flex-start;
+}
+
+.f-grow {
+  flex-grow: 1;
+}
+
+$gap-values: 1, 2, 3, 4, 5, 6, 7;
+
+@each $g in $gap-values {
+  .g#{$g} {
+    gap: #{$g}rem;
+  }
+}
+.g10 {
+  gap: 10rem 0;
+}
+
+.no-wrap {
+  flex-wrap: nowrap;
+}
+.f-wrap {
+  flex-wrap: wrap;
+}

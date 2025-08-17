@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "./Hero";
+import AboutSection from "./AboutSection";
 
 function Home() {
   const heroContent = {
@@ -9,9 +10,10 @@ function Home() {
     text: "Let's Discover More",
   };
   return (
-    <div>
+    <>
       <Hero content={heroContent} />
-    </div>
+      <AboutSection btn={true} />
+    </>
   );
 }
 

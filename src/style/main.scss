@@ -8,7 +8,9 @@
 }
 
 html,
-body {
+body,
+#root,
+.App {
   height: 100%;
 }
 
@@ -54,6 +56,17 @@ button {
   background: none;
   border: none;
 }
+.section_title {
+  font-size: 4.1rem;
+  font-family: Montserrat, sans-serif;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 5rem;
+  &.accent {
+    color: $primary;
+  }
+}
+// .section_title.accent{}
 // #endregion main
 
 // #region header
@@ -86,6 +99,77 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  .hero__wrap {
+    p {
+      font-size: 2.8rem;
+      color: $light;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 4.5px;
+    }
+    h1 {
+      font-size: 7.45rem;
+      color: $light;
+      font-family: Montserrat, sans-serif;
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+  }
 }
 
 // #endregion hero
+
+// #region about
+.about__wrap {
+  border: 20px solid $accent-color;
+  padding: 2rem;
+  position: relative;
+  min-height: 65.6rem;
+  .about__details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  img {
+    position: absolute;
+    left: -115px;
+    top: 50%;
+    width: 50%;
+    height: 93%;
+    object-fit: contain;
+    transform: translateY(-50%);
+  }
+  .about_header {
+    font-size: 1.8rem;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+  }
+  a {
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $light;
+    background-color: $primary;
+    border-radius: 30px;
+    padding: 2rem 5rem;
+  }
+}
+
+// #endregion about
+
+// #region article
+article {
+  .block_data {
+    text-transform: uppercase;
+    span {
+      font-weight: 600;
+    }
+  }
+}
+
+// #endregion article

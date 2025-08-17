@@ -58,7 +58,6 @@ button {
 
 // #region header
 header {
-  background-color: antiquewhite;
   padding: 3rem;
   position: fixed;
   top: 0;
@@ -81,3 +80,12 @@ header {
 }
 
 // #endregion header
+
+// #region hero
+.hero {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+// #endregion hero

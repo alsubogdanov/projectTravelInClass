@@ -4,7 +4,7 @@ import AboutSection from "./AboutSection";
 
 function About() {
   const heroContent = {
-    bgImg: "./img/about-banner.jpg",
+    bgImg: "/img/about-banner.jpg",
     title: "About Us",
     text: "Home / About",
   };

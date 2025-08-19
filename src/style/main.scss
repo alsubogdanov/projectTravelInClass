@@ -42,7 +42,9 @@ img {
 a {
   text-decoration: none;
 }
-
+ul {
+  padding: 0;
+}
 li {
   list-style-type: none;
 }
@@ -64,6 +66,21 @@ button {
   line-height: 5rem;
   &.accent {
     color: $primary;
+  }
+}
+.main_btn {
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $light;
+  background-color: $primary;
+  border-radius: 30px;
+  padding: 2rem 5rem;
+  transition: all 0.3s;
+  &:hover {
+    background-color: $body-color;
+    transition: all 0.3s;
   }
 }
 // .section_title.accent{}
@@ -148,15 +165,12 @@ header {
     letter-spacing: 12px;
     text-transform: uppercase;
   }
-  a {
-    display: inline-block;
-    font-size: 1.6rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: $light;
-    background-color: $primary;
-    border-radius: 30px;
-    padding: 2rem 5rem;
+
+  svg {
+    color: #d0d0d0;
+    &:hover {
+      color: $accent-color;
+    }
   }
 }
 
@@ -170,6 +184,66 @@ article {
       font-weight: 600;
     }
   }
+  img {
+    height: 37rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+  }
+  .article__content {
+    h2,
+    h3 {
+      font-family: Montserrat, sans-serif;
+      font-weight: 600;
+      font-size: 2.8rem;
+      letter-spacing: 1.16px;
+      line-height: 28px;
+      color: $body-color;
+      margin-bottom: 2rem;
+    }
+    p {
+      margin-bottom: 2rem;
+    }
+  }
 }
 
 // #endregion article
+
+.article__cards {
+  background-color: #e4e4e4;
+  .card__img {
+    height: 18.8rem;
+    img {
+      object-fit: cover;
+      object-position: center;
+      border-top-right-radius: 18px;
+      border-top-left-radius: 18px;
+    }
+  }
+  .card_desc {
+    background-color: $light;
+    padding: 2rem;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    p {
+      font-weight: 300;
+      color: $primary;
+      text-transform: uppercase;
+    }
+    h2,
+    h3,
+    h4 {
+      font-family: Montserrat, sans-serif;
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 24px;
+      color: $heading-color;
+    }
+  }
+}
+.second__posts-wrap {
+  .left,
+  .right {
+    width: calc(100% / 2 - 20px);
+  }
+}

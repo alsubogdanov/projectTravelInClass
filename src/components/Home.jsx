@@ -3,7 +3,6 @@ import Hero from "./Hero";
 import AboutSection from "./AboutSection";
 import ArticleCard from "./ArticleCard";
 import SecondPosts from "./SecondPosts";
-import Counter from "./Counter";
 
 function Home() {
   const heroContent = {
@@ -252,7 +251,6 @@ function Home() {
   return (
     <>
       <Hero content={heroContent} />
-      <Counter />
       <AboutSection btn={true} />
       <section className="article__cards pt14">
         <div className="container">
@@ -282,10 +280,10 @@ function Home() {
           )}
         </div>
       </section>
-      <SecondPosts
+      {/* <SecondPosts
         specialArticle={specialArticle}
         lastArticles={articlesLasts}
-      />
+      /> */}
     </>
   );
 }

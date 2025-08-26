@@ -1,7 +1,7 @@
 import React from "react";
 
 function Hero({ content }) {
-  console.log(content);
+//   console.log(content);
 
   return (
     <section

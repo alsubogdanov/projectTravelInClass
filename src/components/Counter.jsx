@@ -1,55 +1,28 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from 'react'
 
 function Counter() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    age: "",
-  });
+	// console.log('Component mounted');
+	const [count, setCount] = useState(0)
+	useEffect(() => {
+		console.log('Component mounted');
+		return () =>{
+			console.log("ddds")
+		}
+  }, []);
+	useEffect(() => {
+		console.log('The value of count has changed:', count);
+	}, [count]); // Will only be executed when count has changed
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value, // updating a specific field
-    });
-  };
+	
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(
-      `Form submitted with name: ${formData.name} and email: ${formData.email}`
-    );
-  };
-
+	const handleCount = () =>{
+		setCount(count + 1)
+  }
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="age"
-          value={formData.age}
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+	<div>            
+		<button onClick={handleCount}>increment count</button>
+	</div>
+
   );
 }
 

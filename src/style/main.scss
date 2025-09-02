@@ -387,3 +387,42 @@ article {
 
 	}
 }
+
+.video-gal__full {
+	height: 70vh;
+
+	.video-full {
+		height: 100%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		border-radius: 20px;
+
+		.icon-play svg {
+			cursor: pointer;
+		}
+	}
+
+	iframe {
+		height: 100%;
+		width: 100%;
+	}
+
+
+}
+
+.video-card {
+	img {
+		border-radius: 2rem;
+		cursor: pointer;
+	}
+
+	&:hover {
+		transform: scale(1.04);
+		transition: all 0.3s;
+	}
+
+	&.active {
+		transform: scale(1.06);
+	}
+}

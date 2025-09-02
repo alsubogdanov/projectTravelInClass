@@ -3,7 +3,7 @@ import Hero from "./Hero";
 import AboutSection from "./AboutSection";
 import ArticleCard from "./ArticleCard";
 import SecondPosts from "./SecondPosts";
-
+import VideoGallery from "./VideoGallery";
 function Home() {
   const heroContent = {
     bgImg: "./img/banner1-img.jpg",
@@ -284,6 +284,7 @@ function Home() {
         specialArticle={specialArticle}
         lastArticles={articlesLasts}
       /> */}
+		<VideoGallery/>
     </>
   );
 }

@@ -3,17 +3,11 @@ import React, {useEffect, useState} from 'react'
 function Counter() {
 	const [seconds, setSeconds] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((prev) => prev + 1);
-    }, 1000);
-
-    // очистка: убираем таймер
-    return () => clearInterval(interval);
-  }, []);
+  
   return (
 	<div>  
-		 <p>Прошло секунд: {seconds}</p>         
+		 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat, incidunt.</p>         
+			<iframe src="https://example.com" width="600" height="400"></iframe>
 	</div>
 
   );

@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function Header() {
+	const [scrolled, setScrolled] = useState(false);
+	useEffect(() => {
+		const handleScroll = () => {
+			
+			if (window.scrollY > 50) setScrolled(true);
+			else setScrolled(false);
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
   const nav = [
     { name: "home", url: "/" },
     { name: "about", url: "/about" },
     { name: "blog", url: "/blog" },
+	 { name: "test", url: "/test" },
     { name: "gallery", url: "/gallery" },
     { name: "contact", url: "/contact" },
     { name: "FAQs", url: "/faqs" },
@@ -20,8 +35,12 @@ function Header() {
       </NavLink>
     </li>
   ));
+
+
   return (
-    <header>
+    <header
+	 	style={{backgroundColor: scrolled ? "#333333" : 'transparent'}} 
+	 >
       <div className="header__wrap d-flex jcsb">
         <div className="header__logo">
           <img src="/img/main-logo-light.png" alt="logo" />

@@ -7,6 +7,7 @@ import SingleArticle from './components/SingleArticle';
 import Contact from './components/Contact';
 import Gallery from './components/Gallery';
 import BlogPage from './components/BlogPage';
+import Counter from './components/Counter';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
 			 <Route path='/blog' element={<BlogPage />} />
           <Route path='/gallery' element={<Gallery />} />
+			 <Route path='/test' element={<Counter />} />
           <Route path='/article/:id' element={<SingleArticle />} />
           {/* <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} /> */}

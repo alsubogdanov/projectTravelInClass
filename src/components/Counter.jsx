@@ -1,26 +1,19 @@
 import React, {useEffect, useState} from 'react'
 
 function Counter() {
-	// console.log('Component mounted');
-	const [count, setCount] = useState(0)
-	useEffect(() => {
-		console.log('Component mounted');
-		return () =>{
-			console.log("ddds")
-		}
+	const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((prev) => prev + 1);
+    }, 1000);
+
+    // очистка: убираем таймер
+    return () => clearInterval(interval);
   }, []);
-	useEffect(() => {
-		console.log('The value of count has changed:', count);
-	}, [count]); // Will only be executed when count has changed
-
-	
-
-	const handleCount = () =>{
-		setCount(count + 1)
-  }
   return (
-	<div>            
-		<button onClick={handleCount}>increment count</button>
+	<div>  
+		 <p>Прошло секунд: {seconds}</p>         
 	</div>
 
   );

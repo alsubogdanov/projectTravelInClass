@@ -6,6 +6,7 @@ import About from './components/About';
 import SingleArticle from './components/SingleArticle';
 import Contact from './components/Contact';
 import Gallery from './components/Gallery';
+import BlogPage from './components/BlogPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
+			 <Route path='/blog' element={<BlogPage />} />
           <Route path='/gallery' element={<Gallery />} />
           <Route path='/article/:id' element={<SingleArticle />} />
           {/* <Route path="/" element={<Home />} />

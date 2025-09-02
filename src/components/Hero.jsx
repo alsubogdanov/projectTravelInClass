@@ -5,7 +5,7 @@ function Hero({ content }) {
 
   return (
     <section
-      className="hero mb12"
+      className="hero"
       style={{
         height: content?.height ? content.height : "60vh",
         backgroundImage: content?.bgImg

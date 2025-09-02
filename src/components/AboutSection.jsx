@@ -76,7 +76,7 @@ function AboutSection(props) {
   ];
 
   return (
-    <section className="about mb14">
+    <section className="about mb14 mt12">
       <div className="container">
         <div className="about__wrap d-flex jce">
           <img src="./img/about-img.jpg" alt="" />

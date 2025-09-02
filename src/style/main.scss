@@ -128,6 +128,11 @@ header {
 				color: $primary;
 				transition: all 0.3s;
 			}
+
+			&.active {
+				color: $primary;
+				text-decoration: underline;
+			}
 		}
 	}
 }
@@ -246,38 +251,40 @@ article {
 .article__cards {
 	background-color: #e4e4e4;
 
-	.card__img {
-		height: 18.8rem;
 
-		img {
-			object-fit: cover;
-			object-position: center;
-			border-top-right-radius: 18px;
-			border-top-left-radius: 18px;
-		}
+}
+
+.card__img {
+	height: 18.8rem;
+
+	img {
+		object-fit: cover;
+		object-position: center;
+		border-top-right-radius: 18px;
+		border-top-left-radius: 18px;
+	}
+}
+
+.card_desc {
+	background-color: $light;
+	padding: 2rem;
+	border-bottom-left-radius: 18px;
+	border-bottom-right-radius: 18px;
+
+	p {
+		font-weight: 300;
+		color: $primary;
+		text-transform: uppercase;
 	}
 
-	.card_desc {
-		background-color: $light;
-		padding: 2rem;
-		border-bottom-left-radius: 18px;
-		border-bottom-right-radius: 18px;
-
-		p {
-			font-weight: 300;
-			color: $primary;
-			text-transform: uppercase;
-		}
-
-		h2,
-		h3,
-		h4 {
-			font-family: Montserrat, sans-serif;
-			font-weight: 600;
-			font-size: 2rem;
-			line-height: 24px;
-			color: $heading-color;
-		}
+	h2,
+	h3,
+	h4 {
+		font-family: Montserrat, sans-serif;
+		font-weight: 600;
+		font-size: 2rem;
+		line-height: 24px;
+		color: $heading-color;
 	}
 }
 
@@ -347,4 +354,36 @@ article {
 
 .msg-status {
 	height: 2rem;
+}
+
+.article-filter {
+	background-color: $heading-color;
+	padding-top: 18rem;
+	padding-bottom: 18rem;
+
+	button {
+		font-size: 1.8rem;
+		color: $light;
+		font-family: "Roboto", sans-serif;
+		font-weight: 600;
+		padding: 1rem 2rem;
+		border-radius: 1.5rem;
+		cursor: pointer;
+		transition: all 0.3s;
+
+		&:hover {
+			color: $primary;
+			transition: all 0.3s;
+		}
+
+		&.active {
+			background-color: $primary;
+
+			&:hover {
+				color: $light;
+			}
+		}
+
+
+	}
 }

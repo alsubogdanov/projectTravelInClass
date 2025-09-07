@@ -8,7 +8,7 @@ function ArticleCard({ article, onClick }) {
     }
   };
   return (
-    <Link className='card' to={'article/' + article.id} onClick={handleClick}>
+    <Link className='card' to={'/article/' + article.id} onClick={handleClick}>
       <div className='card__img'>
         <img src={article.img} alt='' />
       </div>

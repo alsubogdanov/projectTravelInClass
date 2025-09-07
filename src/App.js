@@ -8,11 +8,14 @@ import Contact from './components/Contact';
 import Gallery from './components/Gallery';
 import BlogPage from './components/BlogPage';
 import Counter from './components/Counter';
+import SearchOverlay from './components/SearchOverlay';
+import { useState } from 'react';
 
 function App() {
+	const [isOverlayOpen, setIsOverlayOpen] = useState(false)
   return (
     <div className='App d-flex f-column'>
-      <Header />
+      <Header onSearchClick={()=>setIsOverlayOpen(true)}/>
       <main>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -26,6 +29,10 @@ function App() {
         <Route path="/about" element={<About />} /> */}
         </Routes>
       </main>
+		<SearchOverlay
+			isOpen={isOverlayOpen}
+			onClose={()=>setIsOverlayOpen(false)}
+		/>
 
       <Footer />
     </div>

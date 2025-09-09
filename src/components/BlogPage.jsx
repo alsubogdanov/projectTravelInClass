@@ -308,6 +308,20 @@ function BlogPage() {
   const searchTerm = params.get('search') || '';
   const category = params.get('cats') || '';
 
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlePerPage = 5; // count articles on page
+
+  //1*5=5; 5-5=0 -> [0...4];
+  //2*5=10; 10-5=5 -> [5 ... 9]
+  //3*5=15; 15-5=10 -> [10 ... 14]
+  const indexOfLastArticle = currentPage * articlePerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlePerPage;
+
+  const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
+
+  const totalPages = Math.ceil(filteredArticles.length / articlePerPage); //5
+
   useEffect(() => {
     const filtered = articles.filter((item) => {
       if (searchTerm) {
@@ -327,18 +341,51 @@ function BlogPage() {
   return (
     <div>
       <Hero content={heroContent} />
-      <section className='blog-page '>
+      <section className='blog-page mb13'>
         <div className='container'>
           {(searchTerm || category) && (
             <h2>
               {category ? `Results by cats: "${category}"` : `Results by search: "${searchTerm}"`}
             </h2>
           )}
-          <div className='blog-page__wrap d-flex f-wrap mt13 mb10'>
-            {filteredArticles &&
-              filteredArticles.length > 0 &&
-              filteredArticles.map((item) => <ArticleCard key={item.id} article={item} />)}
+          <div className='blog-page__wrap d-flex f-wrap mt13 mb5'>
+            {currentArticles &&
+              currentArticles.length > 0 &&
+              currentArticles.map((item) => <ArticleCard key={item.id} article={item} />)}
           </div>
+          {totalPages > 1 && (
+            <div className='pagination d-flex jcc g2'>
+              {/* <button
+				  onClick={()=>setCurrentPage(prev=>Math.max(prev-1, 1))}
+				  disabled={currentPage===1}
+				  >Prev</button> */}
+              {currentPage > 1 && (
+                <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}>
+                  Prev
+                </button>
+              )}
+              {[...Array(totalPages)].map((_, ind) => (
+                <button
+                  key={`pagin-${ind}`}
+                  onClick={() => setCurrentPage(ind + 1)}
+                  // onClick={setCurrentPage(ind+1)} // Not correct -> call setCurrentPage()
+                  className={currentPage === ind + 1 ? 'active' : ''}>
+                  {ind + 1}
+                </button>
+              ))}
+
+              {/* <button
+                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}>
+                Next
+              </button> */}
+              {currentPage !== totalPages && (
+                <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}>
+                  Next
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </section>
       <section className='article__cards pt14'>

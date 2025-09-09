@@ -10,6 +10,8 @@ import BlogPage from './components/BlogPage';
 import Counter from './components/Counter';
 import SearchOverlay from './components/SearchOverlay';
 import { useState } from 'react';
+import ScrollToTop from './components/ScrollToTop';
+import FAQPage from './components/FAQPage';
 
 function App() {
 	const [isOverlayOpen, setIsOverlayOpen] = useState(false)
@@ -17,12 +19,14 @@ function App() {
     <div className='App d-flex f-column'>
       <Header onSearchClick={()=>setIsOverlayOpen(true)}/>
       <main>
+			<ScrollToTop/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
 			 <Route path='/blog' element={<BlogPage />} />
           <Route path='/gallery' element={<Gallery />} />
+			 <Route path='/faq' element={<FAQPage />} />
 			 <Route path='/test' element={<Counter />} />
           <Route path='/article/:id' element={<SingleArticle />} />
           {/* <Route path="/" element={<Home />} />

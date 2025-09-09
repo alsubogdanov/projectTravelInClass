@@ -22,7 +22,7 @@ function Header({ onSearchClick }) {
     { name: 'test', url: '/test' },
     { name: 'gallery', url: '/gallery' },
     { name: 'contact', url: '/contact' },
-    { name: 'FAQs', url: '/faqs' },
+    { name: 'FAQs', url: '/faq' },
   ];
   const navMenu = nav.map((item, ind) => (
     <li key={`nav-${ind}`}>

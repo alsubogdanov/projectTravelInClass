@@ -534,3 +534,13 @@ article {
     }
   }
 }
+.pagination {
+  button {
+    font-size: 2rem;
+    cursor: pointer;
+    &.active {
+      color: $primary;
+      text-decoration: underline;
+    }
+  }
+}

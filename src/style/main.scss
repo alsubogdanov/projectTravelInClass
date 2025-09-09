@@ -544,3 +544,27 @@ article {
     }
   }
 }
+.faq {
+  width: calc(100% * 0.65 - 20px);
+  .faq-item {
+    border: 1px solid gray;
+    padding: 1.5rem;
+    &:last-of-type {
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+    }
+    &:first-of-type {
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+    }
+  }
+  .faq-title {
+    font-size: 2.5rem;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+  }
+  .faq-arrow {
+    width: 25px;
+    height: 25px;
+  }
+}

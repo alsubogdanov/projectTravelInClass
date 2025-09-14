@@ -18,7 +18,7 @@ function FAQ() {
   ];
   //this for one open
   //   const [openIndex, setOpenIndex] = useState(null);
-  const [openIndexes, setOpenIndexs] = useState([]);
+  const [openIndexes, setOpenIndexs] = useState([]); //[0,2,1]
 
   const toggleIndex = (index) => {
     if (openIndexes.includes(index)) {

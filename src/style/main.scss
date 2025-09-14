@@ -61,6 +61,13 @@ button {
   background: none;
   border: none;
 }
+input[type='text'],
+textarea {
+  margin-top: 2rem;
+  padding: 2rem 1rem;
+  border: none;
+  font-size: 1.9rem;
+}
 
 .successfully {
   color: green;
@@ -297,11 +304,7 @@ article {
   text-align: center;
 
   input {
-    margin-top: 2rem;
-    padding: 2rem 1rem;
-    border: none;
     border-radius: 3rem;
-    font-size: 1.9rem;
     text-align: center;
   }
 
@@ -602,5 +605,32 @@ article {
   .faq-arrow {
     width: 25px;
     height: 25px;
+  }
+}
+.comments {
+  .form-comments {
+    .comment-form__inputs {
+      input {
+        width: calc(100% / 2 - 20px);
+        border: 1px solid gray;
+      }
+    }
+    textarea {
+      width: 100%;
+      height: 183px;
+      margin-top: 2rem;
+      border: 1px solid gray;
+    }
+    .form__msg {
+      height: 3rem;
+    }
+    .main_btn {
+      width: 100%;
+    }
+  }
+  .comments__wrap {
+    strong {
+      font-size: 2rem;
+    }
   }
 }

@@ -50,6 +50,7 @@ function CommentWithReplay() {
     },
     { name: 'Kate White', date: '2025-09-04', text: 'Очень интересно!', articleId: 1, replies: [] },
   ];
+
   const [comments, setComments] = useState(commentsArr);
   const [msg, setMsg] = useState('');
   const [formData, setFormData] = useState({
@@ -58,6 +59,8 @@ function CommentWithReplay() {
     text: '',
     saveInfo: false,
   });
+  const [visibleCount, setVisibleCount] = useState(2);
+
   useEffect(() => {
     const savedName = localStorage.getItem('commentName');
     const savedEmail = localStorage.getItem('commentEmail');
@@ -104,13 +107,45 @@ function CommentWithReplay() {
     }));
     setMsg('');
   };
+  const addReply = (reply, parentComment) => {
+    const newReply = {
+      ...reply,
+      date: new Date().toLocaleString().split(',')[0],
+      replies: [],
+    };
+    //  console.log(newReply);
+    const updateComment = (commentList) => {
+      console.log(commentList);
+      return commentList.map((c) => {
+        if (c === parentComment) {
+          return { ...c, replies: [...(c.replies || []), newReply] };
+        }
+        if (c.replies && c.replies.length > 0) {
+          return { ...c, replies: updateComment(c.replies) };
+        }
+        return c;
+      });
+    };
+    setComments((prev) => updateComment(prev));
+  };
+  const handleShowMore = () => {
+    setVisibleCount((prev) => prev + 2);
+  };
   return (
     <section className='comments mt12 mb12'>
       <div className='container'>
         <h2>Comments</h2>
         <ul className='comments__wrap'>
-          {comments && comments.map((item, ind) => <CommentItem key={ind} comment={item} />)}
+          {/* {comments &&
+            comments.map((item, ind) => (
+              <CommentItem key={ind} comment={item} addReply={addReply} />
+            ))} */}
+          {comments &&
+            comments
+              .slice(0, visibleCount)
+              .map((item, ind) => <CommentItem key={ind} comment={item} addReply={addReply} />)}
         </ul>
+        {visibleCount < comments.length && <button onClick={handleShowMore}>Show more</button>}
         <div className='comment-form'>
           <h2>Leave a Comment</h2>
           <form onSubmit={handleSubmit} className='form-comments'>

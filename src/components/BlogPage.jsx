@@ -341,14 +341,16 @@ function BlogPage() {
   return (
     <div>
       <Hero content={heroContent} />
+
       <section className='blog-page mb13'>
         <div className='container'>
+          <button className='main_btn mt5'>Create new Article</button>
           {(searchTerm || category) && (
             <h2>
               {category ? `Results by cats: "${category}"` : `Results by search: "${searchTerm}"`}
             </h2>
           )}
-          <div className='blog-page__wrap d-flex f-wrap mt13 mb5'>
+          <div className='blog-page__wrap d-flex f-wrap mt9 mb5'>
             {currentArticles &&
               currentArticles.length > 0 &&
               currentArticles.map((item) => <ArticleCard key={item.id} article={item} />)}

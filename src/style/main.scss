@@ -214,6 +214,9 @@ header {
 
 // #region article
 article {
+  .article__wrap {
+    padding: 10rem 0;
+  }
   .block_data {
     text-transform: uppercase;
 
@@ -632,5 +635,51 @@ article {
     strong {
       font-size: 2rem;
     }
+  }
+  ul {
+    margin-left: 4rem;
+  }
+}
+.edit-article {
+  input[type='text'],
+  textarea {
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 80%;
+    margin-top: 0;
+  }
+  label {
+    width: 20%;
+  }
+  input[type='text'] {
+    padding: 1rem;
+    font-size: 2rem;
+  }
+  .text-description {
+    height: 30rem;
+  }
+  button {
+    cursor: pointer;
+  }
+  input[type='date'] {
+    padding: 1rem;
+    font-size: 2rem;
+  }
+}
+.btn {
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $body-color;
+  background-color: white;
+  border-radius: 30px;
+  padding: 2rem 5rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: 1px solid gray;
+  &:hover {
+    border-color: $primary;
+    transition: all 0.3s;
   }
 }

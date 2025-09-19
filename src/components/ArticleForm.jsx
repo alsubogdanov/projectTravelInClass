@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import { useState, useRef, useEffect } from "react";
+import JoditEditor from "jodit-react";
 
 function ArticleForm({ article, onSave, onCancel }) {
+  const editor = useRef(null);
+
   const [formData, setFormData] = useState({
-    title: article.title,
-    img: article.img,
-    author: article.author,
-    createDate: article.createDate,
-    description: article.description,
+    title: article.title || "",
+    img: article.img || "",
+    author: article.author || "",
+    createDate: article.createDate || "",
+    content: article.content || "", // HTML-строка
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value, // updating a specific field
+      [name]: value,
     });
   };
 
@@ -22,39 +25,73 @@ function ArticleForm({ article, onSave, onCancel }) {
     onSave(formData);
   };
 
+  const editorConfig = {
+    readonly: false,
+    height: 300,
+    toolbarButtonSize: "middle",
+    buttons: [
+      "bold",
+      "italic",
+      "underline",
+      "|",
+      "link",
+      "unlink",
+      "|",
+      "font",
+      "fontsize",
+      "|",
+      "ul",
+      "ol",
+      "|",
+      "left", // выравнивание влево
+      "center", // по центру
+      "right", // вправо
+      "justify", // по ширине
+      "|",
+      "undo",
+      "redo",
+    ],
+  };
+
   return (
-    <form onSubmit={handleSubmit} className='edit-article mb3'>
-      <h3 className='section_title mt4 mb4'>Edit form</h3>
-      <div className='d-flex jcsb aic mb2'>
+    <form onSubmit={handleSubmit} className="edit-article-form">
+      <div>
         <label>Title:</label>
-        <input type='text' name='title' value={formData.title} onChange={handleChange} />
+        <input name="title" value={formData.title} onChange={handleChange} />
       </div>
-      <div className='d-flex jcsb aic mb2'>
+
+      <div>
         <label>Author:</label>
-        <input type='text' name='author' value={formData.author} onChange={handleChange} />
+        <input name="author" value={formData.author} onChange={handleChange} />
       </div>
-      <div className='d-flex aic mb2'>
+
+      <div>
         <label>Date:</label>
-        <input type='date' name='createDate' value={formData.createDate} onChange={handleChange} />
-      </div>
-      <div className='d-flex jcsb aic mb2'>
-        <label>Description:</label>
         <input
-          type='text'
-          className='text-description'
-          name='description'
-          value={formData.description}
+          type="date"
+          name="createDate"
+          value={formData.createDate}
           onChange={handleChange}
         />
-        {/* <textarea name='description' onChange={handleChange}>
-          {formData.description}
-        </textarea> */}
       </div>
-      <div className='d-flex g2'>
-        <button type='submit' className='main_btn'>
-          save
+
+      <div>
+        <label>Content:</label>
+        <JoditEditor
+          ref={editor}
+          value={formData.content}
+          config={editorConfig}
+          onBlur={(newContent) =>
+            setFormData({ ...formData, content: newContent })
+          }
+        />
+      </div>
+
+      <div className="mt3">
+        <button type="submit" className="main_btn mr1">
+          Save
         </button>
-        <button onClick={onCancel} className='btn'>
+        <button type="button" onClick={onCancel} className="btn">
           Cancel
         </button>
       </div>

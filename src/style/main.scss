@@ -1,4 +1,4 @@
-@import './vars.scss';
+@import "./vars.scss";
 
 // #region main
 *,
@@ -21,7 +21,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8rem;
   font-weight: 400;
   color: $body-color;
@@ -61,7 +61,7 @@ button {
   background: none;
   border: none;
 }
-input[type='text'],
+input[type="text"],
 textarea {
   margin-top: 2rem;
   padding: 2rem 1rem;
@@ -317,12 +317,12 @@ article {
 }
 
 .form__full {
-  input:not(input[type='checkbox']) {
+  input:not(input[type="checkbox"]) {
     width: 50%;
     padding: 1.5rem;
     font-size: 1.9rem;
     border: 2px solid #d9d8d8;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   textarea {
@@ -331,7 +331,7 @@ article {
     padding: 1.5rem;
     font-size: 1.9rem;
     border: 2px solid #d9d8d8;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   label {
@@ -364,7 +364,7 @@ article {
   button {
     font-size: 1.8rem;
     color: $light;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 600;
     padding: 1rem 2rem;
     border-radius: 1.5rem;
@@ -398,6 +398,19 @@ article {
 
     .icon-play svg {
       cursor: pointer;
+      svg {
+        transition: all 0.3s;
+
+        &:hover {
+          transform: scale(1.07);
+          transition: all 0.3s;
+        }
+
+        &:active {
+          transform: scale(0.9);
+          transition: all 0.3s;
+        }
+      }
     }
   }
 
@@ -411,6 +424,7 @@ article {
   img {
     border-radius: 2rem;
     cursor: pointer;
+    object-fit: cover;
   }
 
   &:hover {
@@ -476,7 +490,7 @@ article {
 
       .overlay-cats__wrap button {
         font-size: 3.6rem;
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
         transition: all 0.3s;
 
         &:hover {
@@ -514,7 +528,7 @@ article {
   .cat_btn {
     text-transform: uppercase;
     font-size: 1.6rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     padding: 5px 24px;
     border: 1px solid #e4e4e4;
     cursor: pointer;
@@ -641,7 +655,7 @@ article {
   }
 }
 .edit-article {
-  input[type='text'],
+  input[type="text"],
   textarea {
     border: 1px solid gray;
     border-radius: 10px;
@@ -651,7 +665,7 @@ article {
   label {
     width: 20%;
   }
-  input[type='text'] {
+  input[type="text"] {
     padding: 1rem;
     font-size: 2rem;
   }
@@ -661,7 +675,7 @@ article {
   button {
     cursor: pointer;
   }
-  input[type='date'] {
+  input[type="date"] {
     padding: 1rem;
     font-size: 2rem;
   }
@@ -681,5 +695,28 @@ article {
   &:hover {
     border-color: $primary;
     transition: all 0.3s;
+  }
+}
+.edit-article-form {
+  padding: 4rem 0;
+  input {
+    padding: 1rem;
+    border-radius: 7px;
+    border: 1px solid gray;
+    font-family: "Roboto";
+    font-size: 18px;
+    width: 100%;
+  }
+  label {
+    display: block;
+  }
+  & > div {
+    margin-bottom: 1rem;
+  }
+  .jodit-container {
+    min-height: 60vh !important;
+    .jodit-workplace {
+      height: 90% !important;
+    }
   }
 }

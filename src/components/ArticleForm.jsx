@@ -52,17 +52,36 @@ function ArticleForm({ article, onSave, onCancel }) {
       "redo",
     ],
   };
-
+  // обработчик загрузки файла
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const preview = URL.createObjectURL(file);
+      // setFormData({ ...formData, img: preview });
+      // Если нужен реальный файл для отправки на сервер, можно хранить file в state
+      setFormData({ ...formData, imgFile: file, img: preview });
+    }
+  };
   return (
     <form onSubmit={handleSubmit} className="edit-article-form">
       <div>
         <label>Title:</label>
-        <input name="title" value={formData.title} onChange={handleChange} />
+        <input
+          name="title"
+          type="text"
+          value={formData.title}
+          onChange={handleChange}
+        />
       </div>
 
       <div>
         <label>Author:</label>
-        <input name="author" value={formData.author} onChange={handleChange} />
+        <input
+          name="author"
+          type="text"
+          value={formData.author}
+          onChange={handleChange}
+        />
       </div>
 
       <div>
@@ -74,7 +93,24 @@ function ArticleForm({ article, onSave, onCancel }) {
           onChange={handleChange}
         />
       </div>
-
+      {/* Загрузка файла для изображения */}
+      <div className="">
+        <label>Image:</label>
+        <input type="file" accept="image/*" onChange={handleFileChange} />
+      </div>
+      {formData.img && (
+        <div className="mb2">
+          <img
+            src={formData.img}
+            alt="Preview"
+            style={{
+              maxWidth: "200px",
+              maxHeight: "200px",
+              objectFit: "contain",
+            }}
+          />
+        </div>
+      )}
       <div>
         <label>Content:</label>
         <JoditEditor

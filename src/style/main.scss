@@ -257,6 +257,11 @@ article {
 
 .card {
   width: calc(100% / 4 - 10px);
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.02);
+    transition: all 0.3s;
+  }
 }
 
 .card__img {
@@ -562,6 +567,9 @@ article {
       color: $primary;
       text-decoration: underline;
     }
+    &:hover {
+      color: $primary;
+    }
   }
 }
 .faq {
@@ -699,14 +707,18 @@ article {
 }
 .edit-article-form {
   padding: 4rem 0;
-  input {
+  input[type="text"],
+  input[type="date"] {
     padding: 1rem;
     border-radius: 7px;
     border: 1px solid gray;
     font-family: "Roboto";
     font-size: 18px;
+  }
+  input[type="text"] {
     width: 100%;
   }
+
   label {
     display: block;
   }

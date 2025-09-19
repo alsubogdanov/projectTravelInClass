@@ -3,10 +3,12 @@ import Hero from "./Hero";
 import ArticleCard from "./ArticleCard";
 import ArticleFilter from "./ArticleFilter";
 import { useLocation } from "react-router-dom";
+import ArticleForm from "./ArticleForm";
 
 function BlogPage() {
   const [filteredArticles, setFilteredArticles] = useState([]);
-  const articles = [
+
+  const [articles, setArticles] = useState([
     {
       id: 1,
       title: "Mastering JavaScript Closures",
@@ -91,8 +93,8 @@ function BlogPage() {
       author: "Anna Davis",
       description: "Master the tools and techniques for efficient debugging.",
     },
-  ];
-
+  ]);
+  const [isCreating, setIsCreating] = useState(false); // состояние для новой статьи
   const heroContent = {
     bgImg: "/img/about-banner.jpg",
     title: "Blog",
@@ -345,15 +347,32 @@ function BlogPage() {
       return true;
     });
     setFilteredArticles(filtered);
-  }, [location.search]);
+  }, [location.search, articles]); // <---- добавляем articles
 
+  // функция сохранения новой статьи
+  const handleSaveNew = (articleData) => {
+    setArticles([articleData, ...articles]); // добавляем новую статью в начало
+    setIsCreating(false); // закрываем форму
+  };
+  // шаблон новой статьи
+  const newArticleTemplate = {
+    id: articles.length + 1,
+    title: "",
+    img: "",
+    author: "",
+    createDate: new Date().toISOString().slice(0, 10), // текущая дата
+    description: "",
+    content: "", // строка HTML для Jodit
+  };
   return (
     <div>
       <Hero content={heroContent} />
 
       <section className="blog-page mb13">
         <div className="container">
-          <button className="main_btn mt5">Create new Article</button>
+          <button className="main_btn mt5" onClick={() => setIsCreating(true)}>
+            Create new Article
+          </button>
           {(searchTerm || category) && (
             <h2>
               {category
@@ -361,13 +380,21 @@ function BlogPage() {
                 : `Results by search: "${searchTerm}"`}
             </h2>
           )}
+          {isCreating && (
+            <ArticleForm
+              article={newArticleTemplate}
+              onSave={handleSaveNew}
+              onCancel={() => setIsCreating(false)}
+            />
+          )}
           <div className="blog-page__wrap d-flex f-wrap mt9 mb5 g1">
             {currentArticles &&
               currentArticles.length > 0 &&
-              currentArticles
-                .reverse()
-                .map((item) => <ArticleCard key={item.id} article={item} />)}
+              currentArticles.map((item) => (
+                <ArticleCard key={item.id} article={item} />
+              ))}
           </div>
+
           {totalPages > 1 && (
             <div className="pagination d-flex jcc g2">
               {/* <button

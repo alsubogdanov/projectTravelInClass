@@ -146,7 +146,7 @@ function ArticleForm({ article, onSave, onCancel }) {
         <label>Content:</label>
         <JoditEditor
           ref={editor}
-          defaultValue={formData.content}
+          value={formData.content}
           config={editorConfig}
           onBlur={(newContent) =>
             setFormData({ ...formData, content: newContent })

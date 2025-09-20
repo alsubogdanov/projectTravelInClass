@@ -364,6 +364,14 @@ function BlogPage() {
     description: "",
     content: "", // строка HTML для Jodit
   };
+  const handleDeleteArticle = (id) => {
+    const updatedArticles = articles.filter((article) => article.id !== id);
+    setArticles(updatedArticles);
+    const updatedFiltered = filteredArticles.filter(
+      (article) => article.id !== id
+    );
+    setFilteredArticles(updatedFiltered);
+  };
   return (
     <div>
       <Hero content={heroContent} />
@@ -391,7 +399,12 @@ function BlogPage() {
             {currentArticles &&
               currentArticles.length > 0 &&
               currentArticles.map((item) => (
-                <ArticleCard key={item.id} article={item} />
+                <ArticleCard
+                  key={item.id}
+                  article={item}
+                  onDelete={handleDeleteArticle}
+                  canDelete={true} // только здесь включаем Delete
+                />
               ))}
           </div>
 
@@ -443,13 +456,11 @@ function BlogPage() {
         <div className="container">
           <h2 className="section_title accent t-center mb2">Popular stories</h2>
           {articlesPopular && (
-            <ul className="d-flex g2">
+            <div className="d-flex g2">
               {articlesPopular.map((item, ind) => (
-                <li key={`popular-${ind}`}>
-                  <ArticleCard article={item} />
-                </li>
+                <ArticleCard key={`popular-${ind}`} article={item} />
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </section>
@@ -457,13 +468,11 @@ function BlogPage() {
         <div className="container">
           <h2 className="section_title accent t-center mb2">Latest posts</h2>
           {articlesLasts && (
-            <ul className="d-flex g2">
+            <div className="d-flex g2">
               {articlesLasts.map((item, ind) => (
-                <li key={`popular-${ind}`}>
-                  <ArticleCard article={item} />
-                </li>
+                <ArticleCard key={`popular-${ind}`} article={item} />
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </section>

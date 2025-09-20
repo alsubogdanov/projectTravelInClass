@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Hero from "./Hero";
-import { Form, useParams } from "react-router-dom";
+import { Form, useNavigate, useParams } from "react-router-dom";
 import CommentWithoutReplay from "./CommentWithoutReplay";
 import CommentWithReplay from "./CommentWithReplay";
 import ArticleForm from "./ArticleForm";
@@ -8,7 +8,8 @@ import ArticleForm from "./ArticleForm";
 function SingleArticle() {
   const [isEditing, setIsEditing] = useState(false);
   const { id } = useParams();
-  console.log(id);
+  const navigate = useNavigate(); // <-- добавили useNavigate
+  // console.log(id);
 
   const [article, setArticle] = useState({
     id: 1,
@@ -69,6 +70,17 @@ function SingleArticle() {
     setArticle(updatedArticle);
     setIsEditing(false);
   };
+  // --- обработчик удаления ---
+  const handleDelete = () => {
+    // тут отправим в будущем запрос на сервер для удаления
+    const confirmDelete = window.confirm(
+      "Вы действительно хотите удалить эту статью?"
+    );
+    if (confirmDelete) {
+      setIsEditing(false);
+      navigate("/blog"); // <-- переходим на страницу блога
+    }
+  };
   return (
     <div>
       <Hero content={heroContent} />
@@ -103,7 +115,9 @@ function SingleArticle() {
                 <button className="btn" onClick={() => setIsEditing(true)}>
                   Edit
                 </button>
-                <button className="main_btn">Delete</button>
+                <button className="main_btn" onClick={handleDelete}>
+                  Delete
+                </button>
               </div>
             </div>
           )}

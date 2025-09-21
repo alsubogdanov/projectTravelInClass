@@ -12,6 +12,9 @@ import SearchOverlay from './components/SearchOverlay';
 import { useState } from 'react';
 import ScrollToTop from './components/ScrollToTop';
 import FAQPage from './components/FAQPage';
+import Login from './components/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminDashboard from './components/AdminDashboard';
 
 function App() {
 	const [isOverlayOpen, setIsOverlayOpen] = useState(false)
@@ -22,6 +25,10 @@ function App() {
 			<ScrollToTop/>
         <Routes>
           <Route path='/' element={<Home />} />
+			  <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin" element={
+            <ProtectedRoute><AdminDashboard /></ProtectedRoute>
+          } />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
 			 <Route path='/blog' element={<BlogPage />} />

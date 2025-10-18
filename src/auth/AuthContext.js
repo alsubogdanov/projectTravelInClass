@@ -10,13 +10,17 @@ const DEV_USERS = [
 ];
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(()=>{
+	const raw = localStorage.getItem("admin_session");
+	return raw ? JSON.parse(raw) : null
+  });
+  
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const raw = localStorage.getItem("admin_session");
-    if (raw) setUser(JSON.parse(raw));
-  }, []);
+//   useEffect(() => {
+//     const raw = localStorage.getItem("admin_session");
+//     if (raw) setUser(JSON.parse(raw));
+//   }, []);
 
   function login(username, password) {
 	console.log("login");

@@ -15,9 +15,9 @@ export default function Login() {
   async function onSubmit(e) {
     e.preventDefault();
     setErr('');
-    //  console.log(auth);
 
-    const res = auth.login(username.trim(), password);
+    const res = await auth.login(username.trim(), password); // <-- тут добавить await
+    console.log(res);
     if (!res.ok) {
       setErr(res.message || 'Ошибка входа');
       return;

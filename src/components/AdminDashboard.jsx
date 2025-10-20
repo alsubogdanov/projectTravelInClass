@@ -11,7 +11,7 @@ export default function AdminDashboard() {
     height: '80px',
   };
   const auth = useContext(AuthContext);
-  console.log(auth.isAuthenticated);
+  console.log(auth.user);
   return (
     <div className=''>
       <Hero content={heroContent} />

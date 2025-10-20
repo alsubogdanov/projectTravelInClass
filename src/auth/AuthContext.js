@@ -1,9 +1,10 @@
 // AuthContext.js
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AuthContext = createContext();
-
+const API = process.env.REACT_APP_API;
 const DEV_USERS = [
   { id: 1, username: "admin", password: "password123", role: "admin" },
   { id: 2, username: "editor", password: "editorpass", role: "editor" }
@@ -22,19 +23,27 @@ export function AuthProvider({ children }) {
 //     if (raw) setUser(JSON.parse(raw));
 //   }, []);
 
-  function login(username, password) {
-	console.log("login");
-	
-    // simple dev check against hardcoded users
-    const found = DEV_USERS.find(
-      u => u.username === username && u.password === password
-    );
-    if (!found) return { ok: false, message: "Неправильный логин или пароль" };
+  async function login(username, password) {
 
-    const session = { id: found.id, username: found.username, role: found.role, token: "dev-token" };
-    localStorage.setItem("admin_session", JSON.stringify(session));
-    setUser(session);
-    return { ok: true };
+    try {
+      const res = await axios.post(
+        `${API}/api/auth/login/`,
+        { username, password },
+        { withCredentials: true }
+      );
+      const session = {
+        username,
+        access: res.data.access,
+      };
+      localStorage.setItem("admin_session", JSON.stringify(session));
+      setUser(session);
+      return { ok: true };
+    } catch (err) {
+      if (err.response && err.response.status === 401) {
+        return { ok: false, message: "Неправильный логин или пароль" };
+      }
+      return { ok: false, message: "Ошибка соединения с сервером" };
+    }
   }
 
   function logout() {

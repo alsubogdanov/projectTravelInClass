@@ -1,9 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../auth/AuthContext';
 import Hero from './Hero';
+import axios from 'axios';
 
 export default function AdminDashboard() {
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8000/api/sitecontent/social-links/`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error('Ошибка загрузки ссылок:', err);
+      });
+  }, []);
   const heroContent = {
     bgImg: '/img/about-banner.jpg',
     title: '',

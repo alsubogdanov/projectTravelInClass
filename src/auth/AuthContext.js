@@ -2,6 +2,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { initApi } from "../api/api";
 
 const AuthContext = createContext();
 const API = process.env.REACT_APP_API;
@@ -17,6 +18,12 @@ export function AuthProvider({ children }) {
   });
   
   const navigate = useNavigate();
+
+   useEffect(() => {
+		if (user) {
+			initApi(setUser, logout);
+		}
+	}, [user]);
 
 //   useEffect(() => {
 //     const raw = localStorage.getItem("admin_session");
@@ -46,11 +53,22 @@ export function AuthProvider({ children }) {
     }
   }
 
-  function logout() {
-    localStorage.removeItem("admin_session");
-    setUser(null);
-    navigate("/admin/login");
-  }
+  async function logout() {
+	try {
+		// отправляем запрос на бекенд для удаления refresh token
+		await axios.post(`${API}/api/auth/logout/`, {}, { withCredentials: true });
+	} catch (err) {
+		console.error("Ошибка при logout:", err);
+		// можно продолжить logout даже если сервер недоступен
+	} finally {
+		// очищаем фронтовые данные
+		localStorage.removeItem("admin_session");
+		setUser(null);
+		navigate("/admin/login");
+	}
+	}
+ 
+  
 
   const value = { user, login, logout, isAuthenticated: !!user };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

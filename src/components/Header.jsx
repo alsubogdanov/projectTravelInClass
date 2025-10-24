@@ -19,7 +19,7 @@ function Header({ onSearchClick }) {
     { name: 'home', url: '/' },
     { name: 'about', url: '/about' },
     { name: 'blog', url: '/blog' },
-    { name: 'test', url: '/test' },
+    { name: 'admin', url: '/admin' },
     { name: 'gallery', url: '/gallery' },
     { name: 'contact', url: '/contact' },
     { name: 'FAQs', url: '/faq' },

@@ -18,6 +18,7 @@ function SingleArticle() {
       .then((res) => {
         console.log(res.data);
         setArticle(res.data);
+
         setLoading(false);
       })
       .catch((err) => {

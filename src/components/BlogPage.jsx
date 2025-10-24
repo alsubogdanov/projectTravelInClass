@@ -5,6 +5,7 @@ import ArticleFilter from './ArticleFilter';
 import { useLocation } from 'react-router-dom';
 import ArticleForm from './ArticleForm';
 import axios from 'axios';
+import api from '../api/api';
 
 function BlogPage() {
   const [filteredArticles, setFilteredArticles] = useState([]);
@@ -235,6 +236,15 @@ function BlogPage() {
       .catch((err) => {
         console.error('Ошибка загрузки статей:', err);
       });
+    //  api
+    //    .get('/api/articles/') // baseURL + этот путь
+    //    .then((res) => {
+    //      setArticles(res.data);
+    //      setFilteredArticles(res.data);
+    //    })
+    //    .catch((err) => {
+    //      console.error('Ошибка при загрузке статей:', err);
+    //    });
   }, []);
   const location = useLocation();
   const params = new URLSearchParams(location.search);

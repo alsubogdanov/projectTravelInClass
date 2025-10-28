@@ -8,6 +8,7 @@ import axios from 'axios';
 import api from '../api/api';
 
 function BlogPage() {
+  const API = process.env.REACT_APP_API;
   const [filteredArticles, setFilteredArticles] = useState([]);
 
   const [articles, setArticles] = useState([]);
@@ -228,7 +229,7 @@ function BlogPage() {
   ];
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/articles/`)
+      .get(`${API}/api/articles/`)
       .then((res) => {
         console.log(res.data);
         setArticles(res.data);

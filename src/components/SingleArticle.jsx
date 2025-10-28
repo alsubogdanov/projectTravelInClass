@@ -3,6 +3,7 @@ import Hero from './Hero';
 import { useNavigate, useParams } from 'react-router-dom';
 import ArticleForm from './ArticleForm';
 import axios from 'axios';
+import CommentWithReplay from './CommentWithReplay';
 
 function SingleArticle() {
   const [isEditing, setIsEditing] = useState(false);
@@ -92,6 +93,7 @@ function SingleArticle() {
           )}
         </div>
       </article>
+      <CommentWithReplay />
     </div>
   );
 }

@@ -14,7 +14,14 @@ function CommentItem({ comment, addReply }) {
   return (
     <li>
       <p>
-        <strong>{comment.name}</strong> - {comment.date}
+        <strong>{comment.name}</strong> -{' '}
+        {new Date(comment.date).toLocaleString('ru-RU', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        })}
       </p>
       <p>{comment.text}</p>
       <div className='comments-action'>

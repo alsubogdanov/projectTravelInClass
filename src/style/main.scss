@@ -1,4 +1,4 @@
-@import "./vars.scss";
+@import './vars.scss';
 
 // #region main
 *,
@@ -21,7 +21,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.8rem;
   font-weight: 400;
   color: $body-color;
@@ -61,7 +61,7 @@ button {
   background: none;
   border: none;
 }
-input[type="text"],
+input[type='text'],
 textarea {
   margin-top: 2rem;
   padding: 2rem 1rem;
@@ -323,12 +323,12 @@ article {
 }
 
 .form__full {
-  input:not(input[type="checkbox"]) {
+  input:not(input[type='checkbox']) {
     width: 50%;
     padding: 1.5rem;
     font-size: 1.9rem;
     border: 2px solid #d9d8d8;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   textarea {
@@ -337,7 +337,7 @@ article {
     padding: 1.5rem;
     font-size: 1.9rem;
     border: 2px solid #d9d8d8;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   label {
@@ -370,7 +370,7 @@ article {
   button {
     font-size: 1.8rem;
     color: $light;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 600;
     padding: 1rem 2rem;
     border-radius: 1.5rem;
@@ -496,7 +496,7 @@ article {
 
       .overlay-cats__wrap button {
         font-size: 3.6rem;
-        font-family: "Roboto", sans-serif;
+        font-family: 'Roboto', sans-serif;
         transition: all 0.3s;
 
         &:hover {
@@ -534,7 +534,7 @@ article {
   .cat_btn {
     text-transform: uppercase;
     font-size: 1.6rem;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding: 5px 24px;
     border: 1px solid #e4e4e4;
     cursor: pointer;
@@ -664,7 +664,7 @@ article {
   }
 }
 .edit-article {
-  input[type="text"],
+  input[type='text'],
   textarea {
     border: 1px solid gray;
     border-radius: 10px;
@@ -674,7 +674,7 @@ article {
   label {
     width: 20%;
   }
-  input[type="text"] {
+  input[type='text'] {
     padding: 1rem;
     font-size: 2rem;
   }
@@ -684,7 +684,7 @@ article {
   button {
     cursor: pointer;
   }
-  input[type="date"] {
+  input[type='date'] {
     padding: 1rem;
     font-size: 2rem;
   }
@@ -708,15 +708,15 @@ article {
 }
 .edit-article-form {
   padding: 4rem 0;
-  input[type="text"],
-  input[type="date"] {
+  input[type='text'],
+  input[type='date'] {
     padding: 1rem;
     border-radius: 7px;
     border: 1px solid gray;
-    font-family: "Roboto";
+    font-family: 'Roboto';
     font-size: 18px;
   }
-  input[type="text"] {
+  input[type='text'] {
     width: 100%;
   }
 
@@ -751,5 +751,231 @@ article {
       transform: scale(1.09);
       transition: all 0.3s;
     }
+  }
+}
+.admin-container {
+  /* Табы */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+
+  .tab-btn {
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+  }
+
+  .tab-btn:hover {
+    background: #e5e5e5;
+  }
+
+  .tab-btn.active {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+  }
+
+  .tab-content {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    font-size: 15px;
+    color: #444;
+  }
+
+  .updated {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #777;
+  }
+  .admin-dashboard {
+    background-color: #f9fafb;
+    min-height: 100vh;
+    font-family: sans-serif;
+  }
+
+  .admin-container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 25px;
+  }
+
+  .admin-container h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .admin-container p {
+    margin-bottom: 10px;
+    color: #555;
+  }
+
+  .logout-btn {
+    background: #e53e3e;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .logout-btn:hover {
+    background: #c53030;
+  }
+}
+.comments {
+  //   /* Комментарии */
+  //   li {
+  //     list-style: none;
+  //     margin-bottom: 16px;
+  //     padding: 12px;
+  //     border: 1px solid #ccc;
+  //     border-radius: 6px;
+  //     background-color: #f9f9f9;
+  //   }
+
+  //   /* Имя и дата */
+  //   li p:first-of-type {
+  //     margin: 0 0 6px 0;
+  //     font-size: 0.9rem;
+  //     color: #333;
+  //   }
+
+  //   /* Текст комментария */
+  //   li p:nth-of-type(2) {
+  //     margin: 0 0 8px 0;
+  //     font-size: 1rem;
+  //     color: #555;
+  //   }
+
+  //   /* Кнопки действий */
+  //   .comments-action {
+  //     display: flex;
+  //     gap: 8px;
+  //   }
+
+  //   .comments-action button {
+  //     padding: 4px 8px;
+  //     font-size: 0.85rem;
+  //     border: 1px solid #aaa;
+  //     border-radius: 4px;
+  //     background-color: #fff;
+  //     cursor: pointer;
+  //   }
+
+  //   .comments-action button:hover {
+  //     background-color: #eee;
+  //   }
+
+  //   /* Вложенные ответы */
+  //   ul.replies {
+  //     margin-top: 8px;
+  //     padding-left: 20px;
+  //     border-left: 2px solid #ddd;
+  //   }
+
+  //   /* Форма реплая */
+  //   .replay-form {
+  //     margin-top: 8px;
+  //   }
+
+  //   .replay-form input,
+  //   .replay-form textarea {
+  //     width: 100%;
+  //     padding: 6px;
+  //     margin-bottom: 6px;
+  //     border: 1px solid #ccc;
+  //     border-radius: 4px;
+  //   }
+
+  //   .replay-form button {
+  //     padding: 4px 10px;
+  //     font-size: 0.85rem;
+  //     border: 1px solid #aaa;
+  //     border-radius: 4px;
+  //     cursor: pointer;
+  //   }
+  /* Комментарии */
+  li {
+    list-style: none;
+    margin-bottom: 16px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+  }
+
+  /* Имя и дата */
+  li p:first-of-type {
+    margin: 0 0 6px 0;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  /* Текст комментария */
+  li p:nth-of-type(2) {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    color: #555;
+  }
+
+  /* Кнопки действий */
+  .comments-action {
+    display: flex;
+    gap: 8px;
+  }
+
+  .comments-action button {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  .comments-action button:hover {
+    background-color: #eee;
+  }
+
+  /* Вложенные ответы */
+  ul.replies {
+    margin-top: 8px;
+    padding-left: 20px;
+    border-left: 2px solid #ddd;
+  }
+
+  /* Форма реплая */
+  .replay-form {
+    margin-top: 8px;
+  }
+
+  .replay-form input,
+  .replay-form textarea {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .replay-form button {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
   }
 }

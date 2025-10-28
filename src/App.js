@@ -14,7 +14,7 @@ import ScrollToTop from './components/ScrollToTop';
 import FAQPage from './components/FAQPage';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
-import AdminDashboard from './components/AdminDashboard';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
 function App() {
 	const [isOverlayOpen, setIsOverlayOpen] = useState(false)

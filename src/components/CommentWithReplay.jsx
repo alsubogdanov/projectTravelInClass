@@ -1,57 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentItem from './CommentItem';
+import axios from 'axios';
 
 function CommentWithReplay() {
-  //   const { id } = useParams();
-  //   console.log(id);
-  const id = 1;
+  const API = process.env.REACT_APP_API;
+  const { id } = useParams();
 
-  //without replays
-  //with replays
-  const commentsArr = [
-    {
-      name: 'Emily Johnson',
-      date: '2025-09-08',
-      text: 'Отличная статья, спасибо!',
-      articleId: 1,
-      replies: [
-        {
-          name: 'Alex Smith',
-          date: '2025-09-07',
-          text: 'Hi, многое понял.',
-          articleId: 1,
-          replies: [
-            {
-              name: 'Kate Smith',
-              date: '2025-09-07',
-              text: 'Очень полезно, многое понял.',
-              articleId: 1,
-              replies: [],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: 'John Smith',
-      date: '2025-09-07',
-      text: 'Очень полезно, многое понял.',
-      articleId: 1,
-      replies: [],
-    },
-    { name: 'Anna Lee', date: '2025-09-06', text: 'Супер материал!', articleId: 1, replies: [] },
-    {
-      name: 'Mike Brown',
-      date: '2025-09-05',
-      text: 'Спасибо за информацию.',
-      articleId: 1,
-      replies: [],
-    },
-    { name: 'Kate White', date: '2025-09-04', text: 'Очень интересно!', articleId: 1, replies: [] },
-  ];
-
-  const [comments, setComments] = useState(commentsArr);
+  const [comments, setComments] = useState([]);
   const [msg, setMsg] = useState('');
   const [formData, setFormData] = useState({
     name: '',
@@ -62,16 +18,27 @@ function CommentWithReplay() {
   const [visibleCount, setVisibleCount] = useState(2);
 
   useEffect(() => {
-    const savedName = localStorage.getItem('commentName');
-    const savedEmail = localStorage.getItem('commentEmail');
-    if (savedName || savedEmail) {
-      setFormData((prev) => ({
-        ...prev,
-        name: savedName || '',
-        email: savedEmail || '',
-      }));
-    }
-  }, []);
+    axios
+      .get(`${API}/api/articles/${id}/comments/`)
+      .then((res) => {
+        console.log(res.data);
+        setComments(res.data);
+      })
+      .catch((err) => {
+        console.error('Ошибка загрузки статьи:', err);
+      });
+  }, [id]);
+  //   useEffect(() => {
+  //     const savedName = localStorage.getItem('commentName');
+  //     const savedEmail = localStorage.getItem('commentEmail');
+  //     if (savedName || savedEmail) {
+  //       setFormData((prev) => ({
+  //         ...prev,
+  //         name: savedName || '',
+  //         email: savedEmail || '',
+  //       }));
+  //     }
+  //   }, []);
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -79,55 +46,132 @@ function CommentWithReplay() {
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
-  const handleSubmit = (e) => {
+  //   const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     const { name, email, text, saveInfo } = formData;
+  //     if (!name || !email || !text) {
+  //       setMsg('Please fill all inputs');
+  //       return;
+  //     }
+  //     const newComment = {
+  //       name,
+  //       date: new Date().toLocaleString().split(',')[0],
+  //       text,
+  //       articleId: id,
+  //     };
+
+  //     setComments([newComment, ...comments]);
+  //     if (saveInfo) {
+  //       localStorage.setItem('commentName', name);
+  //       localStorage.setItem('commentEmail', email);
+  //     }
+  //     console.log(comments);
+
+  //     setFormData((prev) => ({
+  //       ...prev,
+  //       text: '',
+  //       saveInfo: false,
+  //     }));
+  //     setMsg('');
+  //   };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, text, saveInfo } = formData;
+
     if (!name || !email || !text) {
       setMsg('Please fill all inputs');
       return;
     }
+
     const newComment = {
+      article: id,
+      parent: null,
       name,
-      date: new Date().toLocaleString().split(',')[0],
+      email,
       text,
-      articleId: id,
     };
 
-    setComments([newComment, ...comments]);
-    if (saveInfo) {
-      localStorage.setItem('commentName', name);
-      localStorage.setItem('commentEmail', email);
-    }
-    console.log(comments);
-
-    setFormData((prev) => ({
-      ...prev,
-      text: '',
-      saveInfo: false,
-    }));
-    setMsg('');
-  };
-  const addReply = (reply, parentComment) => {
-    const newReply = {
-      ...reply,
-      date: new Date().toLocaleString().split(',')[0],
-      replies: [],
-    };
-    //  console.log(newReply);
-    const updateComment = (commentList) => {
-      console.log(commentList);
-      return commentList.map((c) => {
-        if (c === parentComment) {
-          return { ...c, replies: [...(c.replies || []), newReply] };
-        }
-        if (c.replies && c.replies.length > 0) {
-          return { ...c, replies: updateComment(c.replies) };
-        }
-        return c;
+    try {
+      const res = await axios.post(`${API}/api/articles/${id}/comments/`, newComment, {
+        headers: { 'Content-Type': 'application/json' },
       });
-    };
-    setComments((prev) => updateComment(prev));
+
+      console.log('Создан комментарий:', res.data);
+
+      // Добавляем новый комментарий в начало списка
+      setComments((prev) => [res.data, ...prev]);
+
+      // Очищаем форму
+      setFormData((prev) => ({
+        ...prev,
+        text: '',
+        saveInfo: false,
+      }));
+      setMsg('');
+    } catch (error) {
+      console.error('Ошибка при добавлении комментария:', error);
+    }
   };
+
+  //   const addReply = (reply, parentComment) => {
+  //     const newReply = {
+  //       ...reply,
+  //       date: new Date().toLocaleString().split(',')[0],
+  //       replies: [],
+  //     };
+  //     //  console.log(newReply);
+  //     const updateComment = (commentList) => {
+  //       console.log(commentList);
+  //       return commentList.map((c) => {
+  //         if (c === parentComment) {
+  //           return { ...c, replies: [...(c.replies || []), newReply] };
+  //         }
+  //         if (c.replies && c.replies.length > 0) {
+  //           return { ...c, replies: updateComment(c.replies) };
+  //         }
+  //         return c;
+  //       });
+  //     };
+  //     setComments((prev) => updateComment(prev));
+  //   };
+
+  const addReply = async (reply, parentComment) => {
+    const newReply = {
+      article: id,
+      parent: parentComment.id, //ссылка на родительский комментарий
+      name: reply.name,
+      email: reply.email,
+      text: reply.text,
+    };
+
+    try {
+      const res = await axios.post(`${API}/api/articles/${id}/comments/`, newReply, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const createdReply = res.data;
+      console.log('Создан ответ:', createdReply);
+
+      // Обновляем состояние, добавляя ответ в правильное место
+      const updateComment = (commentList) => {
+        return commentList.map((c) => {
+          if (c.id === parentComment.id) {
+            return { ...c, replies: [...(c.replies || []), createdReply] };
+          }
+          if (c.replies && c.replies.length > 0) {
+            return { ...c, replies: updateComment(c.replies) };
+          }
+          return c;
+        });
+      };
+
+      setComments((prev) => updateComment(prev));
+    } catch (err) {
+      console.error('Ошибка при добавлении ответа:', err);
+    }
+  };
+
   const handleShowMore = () => {
     setVisibleCount((prev) => prev + 2);
   };
